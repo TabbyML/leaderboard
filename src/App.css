@@ -1,0 +1,10 @@
+.metric-number {
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s ease-out;
+}
+
+.model-item:hover .metric-number {
+  opacity: 1;
+  transform: translateY(0);
+}

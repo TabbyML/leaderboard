@@ -1,0 +1,101 @@
+models:
+    CodeGen-350M:
+        baseline: 
+            average: 2.47
+        oracle:
+            average: 7.35
+        bm25:
+            average: 5.31
+            python: 6.98
+            java: 6.97
+            typescript: 4.02
+            c#: 3.28
+    CodeGen-2.7B:
+        baseline: 
+            average: 4.00
+        oracle:
+            average: 10.04
+        bm25:
+            average: 7.59
+            python: 9.64
+            java: 10.00
+            typescript: 6.47
+            c#: 4.24
+    CodeGen-6.1B:
+        baseline: 
+            average: 3.95
+        oracle:
+            average: 10.11
+        bm25:
+            average: 7.56
+            python: 10.58
+            java: 8.88
+            typescript: 6.14
+            c#: 4.64
+    CodeGen-16B:
+        baseline: 
+            average: 5.05
+        oracle:
+            average: 12.01
+        bm25:
+            average: 9.19
+            python: 12.46
+            java: 11.69
+            typescript: 7.06
+            c#: 5.54
+    StarCoder-1B:
+        baseline: 
+            average: 2.47
+        oracle:
+            average: 7.35
+        bm25:
+            average: 5.31
+            python: 6.98
+            java: 6.97
+            typescript: 4.02
+            c#: 3.28
+    StarCoder-3B:
+        baseline: 
+            average: 4.40
+        oracle:
+            average: 14.81
+        bm25:
+            average: 10.71
+            python: 11.74
+            java: 12.39
+            typescript: 6.73
+            c#: 11.99
+    StarCoder-7B:
+        baseline: 
+            average: 6.37
+        oracle:
+            average: 17.56
+        bm25:
+            average: 12.84
+            python: 13.28
+            java: 15.61
+            typescript: 8.25
+            c#: 14.20
+    StarCoder-15B:
+        baseline: 
+            average: 7.40
+        oracle:
+            average: 18.01
+        bm25:
+            average: 13.77
+            python: 15.72
+            java: 17.48
+            typescript: 8.31
+            c#: 13.57
+    GPT-3.5-turbo:
+        baseline: 
+            average: 6.78
+        oracle:
+            average: 17.56
+        bm25:
+            average: 13.16
+            python: 10.77
+            java: 19.12
+            typescript: 10.94
+            c#: 11.82
+            
