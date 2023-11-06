@@ -56,6 +56,7 @@ export default function App() {
     <div className="w-screen flex flex-col items-center pt-20">
       <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
       <p className="mt-4 font-thin">Curated by <a target="_blank" className='underline' href="https://tabby.tabbyml.com">Tabby Team</a> with ❤️ in San Francisco</p>
+      <p className="mt-2 text-sm italic text-center mb-4">Last updated: 11/05/2023</p>
 
       <div className="mt-8">
         {false && <div className='flex justify-center mt-2 mb-6'>
