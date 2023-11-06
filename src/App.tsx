@@ -1,6 +1,6 @@
+import { BreakPointHooks, breakpointsTailwind } from '@react-hooks-library/core'
 import { useEffect, useState } from 'react';
 import jsyaml from 'js-yaml';
-
 import {
   Select,
   SelectContent,
@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/select"
 
 import "./App.css";
+
+const { useGreater } =
+  BreakPointHooks(breakpointsTailwind);
 
 type Metrics = {
   baseline: {
@@ -88,7 +91,8 @@ export default function App() {
 }
 
 function Metrics({ model }: { model: ModelItem }) {
-  const multiplier = 12;
+  const greaterThanMd = useGreater('md');
+  const multiplier = greaterThanMd ? 24 : 12;
   return <div className='text-xs'>
     <div className='toggle-metric flex items-center gap-2'>
       <div className="rounded-full h-2" style={{ width: model.baseline.average * multiplier, background: 'linear-gradient(90deg, hsla(152, 100%, 60%, 0.5) 0%, hsla(186, 100%, 69%, 0.5) 100%)' }} />
