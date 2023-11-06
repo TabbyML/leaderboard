@@ -71,8 +71,8 @@ export default function App() {
 
         {models.map(model => {
           return (
-            <div key={model.name} className="flex flex-col lg:flex-row text-sm metric-item items-start lg:items-center">
-              <p className="font-semibold font-sf tracking-wide lg:w-48 lg:mr-6 lg:text-right">{model.name}</p>
+            <div key={model.name} className="flex flex-col md:flex-row text-sm metric-item items-start md:items-center">
+              <p className="font-semibold font-sf tracking-wide md:w-48 md:mr-6 md:text-right">{model.name}</p>
               <Metrics model={model} />
             </div>
           )
