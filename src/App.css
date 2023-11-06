@@ -1,10 +1,14 @@
-.metric-number {
-  opacity: 0;
-  transform: translateY(5px);
-  transition: all 0.3s ease-out;
+.toggle-metric {
+    opacity: 0;
+    transform: translateY(2px);
+    transition: all 0.3s ease-out;
 }
 
-.model-item:hover .metric-number {
-  opacity: 1;
-  transform: translateY(0);
+.metric-item {
+    cursor: pointer;
+}
+
+.metric-item:hover .toggle-metric {
+    opacity: 1;
+    transform: translateY(0);
 }

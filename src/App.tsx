@@ -1,29 +1,25 @@
-import { useEffect, useState } from'react';
+import { useEffect, useState } from 'react';
 import jsyaml from 'js-yaml';
 
-import './App.css';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+import "./App.css";
 
 type Metrics = {
   baseline: {
-    average?: number,
-    python?: number,
-    java?: number,
-    typescript?: number,
-    "c#"?: number
+    average: number,
   },
   oracle: {
-    average?: number,
-    python?: number,
-    java?: number,
-    typescript?: number,
-    "c#"?: number
+    average: number,
   },
   bm25: {
     average: number,
-    python: number,
-    java: number,
-    typescript: number,
-    "c#": number
   }
 }
 
@@ -37,7 +33,7 @@ type ModelItem = {
   name: string
 } & Metrics
 
-function App() {
+export default function App() {
   const [models, setModels] = useState<ModelItem[]>([])
 
   useEffect(() => {
@@ -50,52 +46,77 @@ function App() {
             return { name: modelName, ...modelData }
           })
           .sort((a, b) => {
-            return  b.bm25.average - a.bm25.average
+            return b.bm25.average - a.bm25.average
           })
         setModels(models)
-      }); 
+      });
   }, []);
 
   return (
     <div className="w-screen flex flex-col items-center pt-20">
-      <p className="font-sf text-4xl">CCEval Leaderboard</p>
-      <p className="mt-1 text-gray-700">A Diverse and Multilingual Benchmark for Cross-File Code Completion</p>
+      <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
+      <p className="mt-4 font-thin">Curated by <a target="_blank" className='underline' href="https://tabby.tabbyml.com">Tabby Team</a> with ❤️ in San Francisco</p>
 
-      <p>Baseline: only current file context</p>
-      <p>BM25: cross-file context retrieval</p>
-      <p>Oracle: upper bound cross-file context retrieval</p>
+      <div className="mt-8">
+        {false && <div className='flex justify-center mt-2 mb-6'>
+          <Select>
+            <SelectTrigger className="w-[300px]">
+              <SelectValue placeholder="Next Line Accuracy" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="average">Next Line Accuracy</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>}
 
-      <div className="mt-10">
         {models.map(model => {
-          const width = model.bm25.average * 30
-          const baselineLeft = model.baseline.average ? model.baseline.average * 30 : 0
-          const oracleLeft = model.oracle.average ? model.oracle.average * 30 : 0
           return (
-            <div className="flex items-center py-4 model-item">
-              <p className="text-xl w-48 text-right mr-6 font-sf tracking-wide">{model.name}</p>
-              <div className="flex-1 relative ">
-                <div className="metric-number text-sm absolute flex flex-col items-center -ml-5 bottom-full" style={{ left: `${baselineLeft}px` }}>
-                  <p className='leading-none'>baseline</p>
-                  <p className='leading-none'>{model.baseline.average}</p>
-                </div>
-                <div className="metric-number text-sm absolute flex flex-col items-center -ml-5 bottom-full" style={{ left: `${width}px` }}>
-                  <p className='leading-none'>bm25</p>
-                  <p className='leading-none'>{model.bm25.average}</p>
-                </div>
-                <div className="metric-number text-sm absolute flex flex-col items-center -ml-5 bottom-full" style={{ left: `${oracleLeft}px` }}>
-                  <p className='leading-none'>oracle</p>
-                  <p className='leading-none'>{model.oracle.average}</p>
-                </div>
-
-                <div className="rounded-full h-3" style={{ width: `${width}px`, background: 'linear-gradient(90deg, rgba(66,164,235,1) 0%, rgba(162,119,255,1) 100%)' }} />
-              </div>
+            <div key={model.name} className="flex items-center text-sm metric-item">
+              <p className="font-semibold w-48 text-right mr-6 font-sf tracking-wide">{model.name}</p>
+              <Metrics model={model} />
             </div>
           )
         })}
+
+        <div className='flex justify-center mt-14'>
+          <MetricExplanation />
+        </div>
       </div>
-      
     </div>
   );
 }
 
-export default App;
+function Metrics({ model }: { model: ModelItem }) {
+  return <div>
+    <div className='toggle-metric flex items-center gap-2'>
+      <div className="rounded-full h-2" style={{ width: `${model.baseline.average * 30}px`, background: 'linear-gradient(90deg, hsla(152, 100%, 60%, 0.5) 0%, hsla(186, 100%, 69%, 0.5) 100%)' }} />
+      <span>{model.baseline.average}%</span>
+    </div>
+    <div className='flex items-center gap-2'>
+      <div className="rounded-full h-2" style={{ width: `${model.bm25.average * 30}px`, background: 'linear-gradient(90deg, hsla(279, 83%, 85%, 1) 0%, hsla(321, 90%, 70%, 1) 100%)' }} />
+      <span>{model.bm25.average}%</span>
+    </div>
+    <div className='toggle-metric flex items-center gap-2'>
+      <div className="rounded-full h-2" style={{ width: `${model.oracle.average * 30}px`, background: 'linear-gradient(90deg, hsla(192, 95%, 70%, 0.6) 0%, hsla(225, 89%, 47%, 0.6) 100%)' }} />
+      <span>{model.oracle.average}%</span>
+    </div>
+  </div>
+}
+
+function MetricExplanation() {
+  const width = 40;
+  return <div className='flex flex-col font-thin'>
+    <div className='flex items-center gap-2'>
+      <div className="rounded-full h-2" style={{ width, background: 'linear-gradient(90deg, hsla(152, 100%, 60%, 0.5) 0%, hsla(186, 100%, 69%, 0.5) 100%)' }} />
+      <span>Baseline</span>
+    </div>
+    <div className='flex items-center gap-2'>
+      <div className="rounded-full h-2" style={{ width, background: 'linear-gradient(90deg, hsla(279, 83%, 85%, 1) 0%, hsla(321, 90%, 70%, 1) 100%)' }} />
+      <span>with Repository Context ( BM25 )</span>
+    </div>
+    <div className='flex items-center gap-2'>
+      <div className="rounded-full h-2" style={{ width, background: 'linear-gradient(90deg, hsla(192, 95%, 70%, 0.6) 0%, hsla(225, 89%, 47%, 0.6) 100%)' }} />
+      <span>with Repository Context ( Oracle )</span>
+    </div>
+  </div>
+}
