@@ -55,9 +55,10 @@ export default function App() {
   return (
     <div className="w-screen flex flex-col items-center pt-20 text-center">
       <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
-      <p className="mt-4 font-thin">Curated by <a target="_blank" className='underline' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
+      <p className="mt-4 font-thin">Curated by <a target="_blank" className='underline decoration-slate-400' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
+      <p className="mt-2 text-sm italic">Last Updated: 11/05/2023</p>
 
-      <div className="mt-8">
+      <div className="mt-12">
         {false && <div className='flex justify-center mt-2 mb-6'>
           <Select>
             <SelectTrigger className="w-[300px]">
@@ -88,7 +89,7 @@ export default function App() {
 
 function Metrics({ model }: { model: ModelItem }) {
   const multiplier = 12;
-  return <div>
+  return <div className='text-xs'>
     <div className='toggle-metric flex items-center gap-2'>
       <div className="rounded-full h-2" style={{ width: model.baseline.average * multiplier, background: 'linear-gradient(90deg, hsla(152, 100%, 60%, 0.5) 0%, hsla(186, 100%, 69%, 0.5) 100%)' }} />
       <span>{model.baseline.average}%</span>
