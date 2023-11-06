@@ -77,7 +77,7 @@ export default function App() {
           return (
             <div key={model.name} className="flex flex-col md:flex-row text-sm metric-item items-start md:items-center">
               <p className="font-semibold font-sf tracking-wide md:w-48 md:mr-6 md:text-right">{model.name}</p>
-              <Metrics model={model} />
+              <MetricBars model={model} />
             </div>
           )
         })}
@@ -90,7 +90,7 @@ export default function App() {
   );
 }
 
-function Metrics({ model }: { model: ModelItem }) {
+function MetricBars({ model }: { model: ModelItem }) {
   const greaterThanMd = useGreater('md');
   const multiplier = greaterThanMd ? 24 : 12;
   return <div className='text-xs'>
