@@ -1,7 +1,7 @@
 .toggle-metric {
     opacity: 0;
-    transform: translateY(2px);
-    transition: all 0.3s ease-out;
+    transform: translateY(3px);
+    transition: all 0.6s ease-out;
 }
 
 .metric-item {
