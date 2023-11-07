@@ -14,27 +14,32 @@ import "./App.css";
 const { useGreater } =
   BreakPointHooks(breakpointsTailwind);
 
+type Metric = {
+  "C#": number,
+  "Java": number,
+  "Python": number,
+  "TypeScript": number,
+  Average: number
+};
+
 type Metrics = {
-  baseline: {
-    average: number,
-  },
-  oracle: {
-    average: number,
-  },
-  bm25: {
-    average: number,
-  }
+  Baseline: Metric,
+  Oracle: Metric,
+  BM25: Metric
 }
 
-type Leaderboard = {
-  models: {
-    [key: string]: Metrics
-  }
+type Models = {
+  [key: string]: Metrics
 }
 
 type ModelItem = {
   name: string
 } & Metrics
+
+function addAverage(x: any) {
+  const average = (array: Array<number>) => array.reduce((a, b) => a + b) / array.length;
+  x['Average'] = Math.round(average(Object.values(x)) * 100) / 100;
+}
 
 export default function App() {
   const [models, setModels] = useState<ModelItem[]>([])
@@ -43,13 +48,16 @@ export default function App() {
     fetch('/leaderboard.yml')
       .then(res => res.text())
       .then(yaml => {
-        const data = jsyaml.load(yaml) as Leaderboard;
-        const models = Object.entries(data.models)
+        const data = jsyaml.load(yaml) as Models;
+        const models = Object.entries(data)
           .map(([modelName, modelData]) => {
+            addAverage(modelData.Baseline);
+            addAverage(modelData.BM25);
+            addAverage(modelData.Oracle);
             return { name: modelName, ...modelData }
           })
           .sort((a, b) => {
-            return b.bm25.average - a.bm25.average
+            return b.BM25.Average - a.BM25.Average
           })
         setModels(models)
       });
@@ -95,16 +103,16 @@ function MetricBars({ model }: { model: ModelItem }) {
   const multiplier = greaterThanMd ? 24 : 12;
   return <div className='text-xs'>
     <div className='toggle-metric flex items-center gap-2'>
-      <div className="rounded-full h-2" style={{ width: model.baseline.average * multiplier, background: 'linear-gradient(90deg, hsla(152, 100%, 60%, 0.5) 0%, hsla(186, 100%, 69%, 0.5) 100%)' }} />
-      <span>{model.baseline.average}%</span>
+      <div className="rounded-full h-2" style={{ width: model.Baseline.Average * multiplier, background: 'linear-gradient(90deg, hsla(152, 100%, 60%, 0.5) 0%, hsla(186, 100%, 69%, 0.5) 100%)' }} />
+      <span>{model.Baseline.Average}%</span>
     </div>
     <div className='flex items-center gap-2'>
-      <div className="rounded-full h-2" style={{ width: model.bm25.average * multiplier, background: 'linear-gradient(90deg, hsla(279, 83%, 85%, 1) 0%, hsla(321, 90%, 70%, 1) 100%)' }} />
-      <span>{model.bm25.average}%</span>
+      <div className="rounded-full h-2" style={{ width: model.BM25.Average * multiplier, background: 'linear-gradient(90deg, hsla(279, 83%, 85%, 1) 0%, hsla(321, 90%, 70%, 1) 100%)' }} />
+      <span>{model.BM25.Average}%</span>
     </div>
     <div className='toggle-metric flex items-center gap-2'>
-      <div className="rounded-full h-2" style={{ width: model.oracle.average * multiplier, background: 'linear-gradient(90deg, hsla(192, 95%, 70%, 0.6) 0%, hsla(225, 89%, 47%, 0.6) 100%)' }} />
-      <span>{model.oracle.average}%</span>
+      <div className="rounded-full h-2" style={{ width: model.Oracle.Average * multiplier, background: 'linear-gradient(90deg, hsla(192, 95%, 70%, 0.6) 0%, hsla(225, 89%, 47%, 0.6) 100%)' }} />
+      <span>{model.Oracle.Average}%</span>
     </div>
   </div>
 }
