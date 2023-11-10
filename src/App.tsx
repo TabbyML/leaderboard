@@ -48,7 +48,7 @@ export default function App() {
   useEffect(() => {
     let filename;
     if (window.location.href.includes("kind=instruct")) {
-      setTitle("Does instruct fine-tuning improved code completion?");
+      setTitle("Does instruct fine-tuning improve code completion?");
       filename = "/instruct-vs-pretrain.yml"
     } else {
       setTitle("How do open-source models compare to ChatGPT?");
