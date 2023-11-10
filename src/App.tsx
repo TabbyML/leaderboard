@@ -49,7 +49,7 @@ export default function App() {
     let filename;
     if (window.location.href.includes("kind=instruct")) {
       setTitle("Does instruct fine-tuning improve code completion?");
-      filename = "/instruct-vs-pretrain.yml"
+      filename = "/instruct.yml"
     } else {
       setTitle("How do open-source models compare to ChatGPT?");
       filename = "/cceval.yml";
