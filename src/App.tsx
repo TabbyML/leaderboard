@@ -42,10 +42,19 @@ function addAverage(x: any) {
 }
 
 export default function App() {
+  const [title, setTitle] = useState<String>("");
   const [models, setModels] = useState<ModelItem[]>([])
 
   useEffect(() => {
-    fetch('/leaderboard.yml')
+    let filename;
+    if (window.location.href.includes("kind=instruct")) {
+      setTitle("Does instruct fine-tuning improved code completion?");
+      filename = "/instruct-vs-pretrain.yml"
+    } else {
+      setTitle("How do open-source models compare to ChatGPT?");
+      filename = "/cceval.yml";
+    }
+    fetch(filename)
       .then(res => res.text())
       .then(yaml => {
         const data = jsyaml.load(yaml) as Models;
@@ -66,10 +75,11 @@ export default function App() {
   return (
     <div className="w-screen flex flex-col items-center pt-20 text-center">
       <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
-      <p className="mt-4 font-thin">Curated by <a target="_blank" className='underline decoration-slate-400' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
+      <p className="mt-4 font-thin">Curated by <a target="_blank" rel="noreferrer" className='underline decoration-slate-400' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
       <p className="mt-2 text-sm italic">Last Updated: 11/05/2023</p>
 
-      <div className="mt-12">
+      <div className="flex flex-col mt-12">
+        {title && <span className='italic font-semibold mb-4'>{title}</span>}
         {false && <div className='flex justify-center mt-2 mb-6'>
           <Select>
             <SelectTrigger className="w-[300px]">
@@ -84,7 +94,7 @@ export default function App() {
         {models.map(model => {
           return (
             <div key={model.name} className="flex flex-col md:flex-row text-sm metric-item items-start md:items-center">
-              <p className="font-semibold font-sf tracking-wide md:w-48 md:mr-6 md:text-right">{model.name}</p>
+              <p className="font-sf tracking-wide md:w-48 md:mr-6 md:text-right">{model.name}</p>
               <MetricBars model={model} />
             </div>
           )
