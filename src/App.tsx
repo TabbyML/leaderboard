@@ -47,13 +47,17 @@ export default function App() {
 
   useEffect(() => {
     let filename;
-    if (window.location.href.includes("kind=instruct")) {
+    if (window.location.href.includes("kind=cceval")) {
+      setTitle("How do open-source models compare to ChatGPT?");
+      filename = "/instruct.yml"
+    } if (window.location.href.includes("kind=instruct")) {
       setTitle("Does instruct fine-tuning improve code completion?");
       filename = "/instruct.yml"
     } else {
-      setTitle("How do open-source models compare to ChatGPT?");
-      filename = "/cceval.yml";
+      filename = "/tabby.yml";
+      setTitle("Which models plays best in Tabby?");
     }
+
     fetch(filename)
       .then(res => res.text())
       .then(yaml => {
@@ -76,7 +80,7 @@ export default function App() {
     <div className="w-screen flex flex-col items-center pt-20 text-center">
       <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
       <p className="mt-4 font-thin">Curated by <a target="_blank" rel="noreferrer" className='underline decoration-slate-400' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
-      <p className="mt-2 text-sm italic">Last Updated: 11/09/2023</p>
+      <p className="mt-2 text-sm italic">Last Updated: 11/10/2023</p>
 
       <div className="flex flex-col mt-12">
         {title && <span className='italic font-semibold mb-4'>{title}</span>}
