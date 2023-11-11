@@ -1,0 +1,29 @@
+"CodeLlama-13B:\n  BM25:\n    C#: 8.6\n    Java: 7.2\n    Python: 15.42\n    Typescript:\
+  \ 21.84\n  Baseline:\n    C#: 4.75\n    Java: 4.63\n    Python: 7.8\n    Typescript:\
+  \ 15.64\n  Oracle:\n    C#: 11.14\n    Java: 8.51\n    Python: 20.19\n    Typescript:\
+  \ 25.89\nCodeLlama-7B:\n  BM25:\n    C#: 7.52\n    Java: 7.01\n    Python: 14.78\n\
+  \    Typescript: 20.53\n  Baseline:\n    C#: 3.56\n    Java: 3.83\n    Python: 7.24\n\
+  \    Typescript: 14.39\n  Oracle:\n    C#: 10.24\n    Java: 8.18\n    Python: 18.31\n\
+  \    Typescript: 22.82\nDeepseekCoder-1.3B:\n  BM25:\n    C#: 6.84\n    Java: 5.38\n\
+  \    Python: 12.46\n    Typescript: 17.58\n  Baseline:\n    C#: 3.28\n    Java:\
+  \ 2.52\n    Python: 5.59\n    Typescript: 13.02\n  Oracle:\n    C#: 9.39\n    Java:\
+  \ 6.36\n    Python: 16.25\n    Typescript: 21.1\nDeepseekCoder-6.7B:\n  BM25:\n\
+  \    C#: 9.39\n    Java: 7.01\n    Python: 16.36\n    Typescript: 22.05\n  Baseline:\n\
+  \    C#: 4.92\n    Java: 3.88\n    Python: 9.27\n    Typescript: 16.54\n  Oracle:\n\
+  \    C#: 11.2\n    Java: 7.71\n    Python: 21.43\n    Typescript: 25.54\nStarCoder-1B:\n\
+  \  BM25:\n    C#: 5.66\n    Java: 3.79\n    Python: 8.89\n    Typescript: 8.05\n\
+  \  Baseline:\n    C#: 1.75\n    Java: 0.79\n    Python: 1.13\n    Typescript: 4.29\n\
+  \  Oracle:\n    C#: 7.81\n    Java: 4.58\n    Python: 12.68\n    Typescript: 10.19\n\
+  StarCoder-3B:\n  BM25:\n    C#: 6.67\n    Java: 4.35\n    Python: 12.08\n    Typescript:\
+  \ 10.46\n  Baseline:\n    C#: 2.88\n    Java: 1.82\n    Python: 4.88\n    Typescript:\
+  \ 6.82\n  Oracle:\n    C#: 9.33\n    Java: 5.33\n    Python: 16.7\n    Typescript:\
+  \ 12.57\nStarCoder-7B:\n  BM25:\n    C#: 7.58\n    Java: 5.42\n    Python: 14.11\n\
+  \    Typescript: 11.65\n  Baseline:\n    C#: 3.62\n    Java: 2.81\n    Python: 6.6\n\
+  \    Typescript: 7.96\n  Oracle:\n    C#: 9.62\n    Java: 6.45\n    Python: 18.54\n\
+  \    Typescript: 13.62\nWizardCoder-1B:\n  BM25:\n    C#: 4.92\n    Java: 3.6\n\
+  \    Python: 8.18\n    Typescript: 7.87\n  Baseline:\n    C#: 1.7\n    Java: 1.17\n\
+  \    Python: 1.39\n    Typescript: 4.74\n  Oracle:\n    C#: 7.81\n    Java: 4.63\n\
+  \    Python: 12.87\n    Typescript: 10.07\nWizardCoder-3B:\n  BM25:\n    C#: 6.67\n\
+  \    Java: 4.35\n    Python: 12.53\n    Typescript: 10.37\n  Baseline:\n    C#:\
+  \ 2.88\n    Java: 1.82\n    Python: 5.33\n    Typescript: 6.97\n  Oracle:\n    C#:\
+  \ 9.33\n    Java: 5.33\n    Python: 16.74\n    Typescript: 12.57\n"
