@@ -48,16 +48,18 @@ export default function App() {
   useEffect(() => {
     let filename;
     if (window.location.href.includes("kind=cceval")) {
+      console.log("includes");
       setTitle("How do open-source models compare to ChatGPT?");
-      filename = "/instruct.yml"
-    } if (window.location.href.includes("kind=instruct")) {
+      filename = "/cceval.yml"
+    } else if (window.location.href.includes("kind=instruct")) {
       setTitle("Does instruct fine-tuning improve code completion?");
       filename = "/instruct.yml"
     } else {
-      filename = "/tabby.yml";
       setTitle("Which models plays best in Tabby?");
+      filename = "/tabby.yml";
     }
 
+    console.log("filename", filename);
     fetch(filename)
       .then(res => res.text())
       .then(yaml => {
