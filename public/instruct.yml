@@ -1,64 +1,64 @@
 StarCoder-1B:
-  BM25:
-    Python: 8.89
-    TypeScript: 10.46
-    Java: 4.30
-    C#: 6.50
-  Baseline:
-    C#: 1.13
-    Java: 6.85
-    Python: 1.87
-    TypeScript: 2.88
-  Oracle:
-    C#: 12.68
-    Java: 12.57
-    Python: 5.33
-    TypeScript: 9.33
-WizardCoder-1B:
-  BM25:
-    Python: 8.18
-    TypeScript: 10.49
-    Java: 4.35
-    C#: 6.67
-  Baseline:
-    C#: 1.39
-    Java: 6.85
-    Python: 1.82
-    TypeScript: 2.94
-  Oracle:
-    C#: 12.87
-    Java: 12.60
-    Python: 5.33
-    TypeScript: 9.33
+    BM25:
+      C#: 5.66
+      Java: 3.79
+      Python: 8.89
+      Typescript: 8.05
+    Baseline:
+      C#: 1.75
+      Java: 0.79
+      Python: 1.13
+      Typescript: 4.29
+    Oracle:
+      C#: 7.81
+      Java: 4.58
+      Python: 12.68
+      Typescript: 10.19
 StarCoder-3B:
   BM25:
-    Python: 12.08
-    TypeScript: 10.46
-    Java: 4.35
     C#: 6.67
+    Java: 4.35
+    Python: 12.08
+    Typescript:   10.46
   Baseline:
-    C#: 4.88
-    Java: 6.82
-    Python: 1.82
-    TypeScript: 2.88
+    C#: 2.88
+    Java: 1.82
+    Python: 4.88
+    Typescript:   6.82
   Oracle:
-    C#: 16.70
-    Java: 12.57
-    Python: 5.33
-    TypeScript: 9.33
+    C#: 9.33
+    Java: 5.33
+    Python: 16.7
+    Typescript:   12.57
+WizardCoder-1B:
+  BM25:
+    C#: 4.92
+    Java: 3.6
+    Python: 8.18
+    Typescript: 7.87
+  Baseline:
+    C#: 1.7
+    Java: 1.17
+    Python: 1.39
+    Typescript: 4.74
+  Oracle:
+    C#: 7.81
+    Java: 4.63
+    Python: 12.87
+    Typescript: 10.07
 WizardCoder-3B:
   BM25:
-    Python: 12.05
-    TypeScript: 10.37
-    Java: 4.35
     C#: 6.67
+    Java: 4.35
+    Python: 12.53
+    Typescript: 10.37
   Baseline:
-    C#: 4.92
-    Java: 6.97
-    Python: 1.82
-    TypeScript: 2.88
-  Oracle:
-    C#: 16.70
-    Java: 12.57
+    C#:   2.88
+    Java: 1.82
     Python: 5.33
-    TypeScript: 9.33
+    Typescript: 6.97
+  Oracle:
+    C#:   9.33
+    Java: 5.33
+    Python: 16.74
+    Typescript: 12.57
