@@ -64,6 +64,11 @@ export default function App() {
         </TabsContent>
       </Tabs>
 
+      {value === "cceval" && <span className='text-sm mx-4 font-thin lg:w-[500px] mt-4'>
+        Numbers provided in this section are sourced from <a target='_blank' rel="noreferrer" className='italic underline decoration-slate-400' href="https://crosscodeeval.github.io/">CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion</a>
+      </span>}
+
+
       <div className='flex justify-center my-14'>
         <MetricExplanation />
       </div>
