@@ -50,7 +50,7 @@ export default function App() {
     <div className="w-screen flex flex-col items-center pt-20 text-center">
       <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
       <p className="mt-4 font-thin">Curated by <a target="_blank" rel="noreferrer" className='underline decoration-slate-400' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
-      <p className="mt-2 text-sm italic">Last Updated: 11/12/2023</p>
+      <p className="mt-2 text-sm italic">Last Updated: 11/13/2023</p>
 
       <Tabs className="mt-12" value={value}>
         <TabsContent value="tabby">
@@ -131,7 +131,7 @@ function Leaderboard({ url }: { url: string }) {
 function MetricBars({ model }: { model: ModelItem }) {
   const greaterThanMd = useGreater('md');
   const multiplier = greaterThanMd ? 24 : 12;
-  return <div className='text-xs'>
+  return <div className='text-xs py-1 lg:py-0'>
     <div className='toggle-metric flex items-center gap-2'>
       <div className="rounded-full h-2" style={{ width: model.Baseline.Average * multiplier, background: 'linear-gradient(90deg, hsla(152, 100%, 60%, 0.5) 0%, hsla(186, 100%, 69%, 0.5) 100%)' }} />
       <span>{model.Baseline.Average}%</span>
