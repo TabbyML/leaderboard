@@ -8,8 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Tabs, TabsContent } from "@/components/ui/tabs"
 
 import "./App.css";
+import { cn } from './lib/utils';
 
 const { useGreater } =
   BreakPointHooks(breakpointsTailwind);
@@ -42,25 +44,49 @@ function addAverage(x: any) {
 }
 
 export default function App() {
-  const [title, setTitle] = useState<String>("");
+  const [value, setValue] = useState<string>("tabby");
+
+  return (
+    <div className="w-screen flex flex-col items-center pt-20 text-center">
+      <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
+      <p className="mt-4 font-thin">Curated by <a target="_blank" rel="noreferrer" className='underline decoration-slate-400' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
+      <p className="mt-2 text-sm italic">Last Updated: 11/12/2023</p>
+
+      <Tabs className="mt-12" value={value}>
+        <TabsContent value="tabby">
+          <Leaderboard url="/tabby.yml" />
+        </TabsContent>
+        <TabsContent value="instruct">
+          <Leaderboard url="/instruct.yml" />
+        </TabsContent>
+        <TabsContent value="cceval">
+          <Leaderboard url="/instruct.yml" />
+        </TabsContent>
+      </Tabs>
+
+      <div className='flex justify-center my-14'>
+        <MetricExplanation />
+      </div>
+
+      <div className='lg:fixed lg:bottom-0 my-10 flex flex-col gap-4 lg:flex-row'>
+        <TabTrigger setValue={setValue} label="tabby" value={value}>Which models plays best in Tabby?</TabTrigger>
+        <TabTrigger setValue={setValue} label="instruct" value={value}>Does instruct fine-tuning improve code completion?</TabTrigger>
+        <TabTrigger setValue={setValue} label="cceval" value={value}>How do open-source models compare to ChatGPT?</TabTrigger>
+      </div>
+    </div>
+  );
+}
+
+function TabTrigger({ label, value, setValue, children }: { label: string, value: string, setValue: (x: string) => void, children: React.ReactNode }) {
+  const linkStyle = "text-sm text-zinc-500 cursor-pointer";
+  return <div className={cn(linkStyle, { "text-black": value === label })} onClick={() => setValue(label)}>{children}</div>
+}
+
+function Leaderboard({ url }: { url: string }) {
   const [models, setModels] = useState<ModelItem[]>([])
 
   useEffect(() => {
-    let filename;
-    if (window.location.href.includes("kind=cceval")) {
-      console.log("includes");
-      setTitle("How do open-source models compare to ChatGPT?");
-      filename = "/cceval.yml"
-    } else if (window.location.href.includes("kind=instruct")) {
-      setTitle("Does instruct fine-tuning improve code completion?");
-      filename = "/instruct.yml"
-    } else {
-      setTitle("Which models plays best in Tabby?");
-      filename = "/tabby.yml";
-    }
-
-    console.log("filename", filename);
-    fetch(filename)
+    fetch(url)
       .then(res => res.text())
       .then(yaml => {
         const data = jsyaml.load(yaml) as Models;
@@ -76,42 +102,30 @@ export default function App() {
           })
         setModels(models)
       });
-  }, []);
+  }, [url]);
 
-  return (
-    <div className="w-screen flex flex-col items-center pt-20 text-center">
-      <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
-      <p className="mt-4 font-thin">Curated by <a target="_blank" rel="noreferrer" className='underline decoration-slate-400' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
-      <p className="mt-2 text-sm italic">Last Updated: 11/10/2023</p>
+  return <div className="flex flex-col">
+    {false && <div className='flex justify-center mt-2 mb-6'>
+      <Select>
+        <SelectTrigger className="w-[300px]">
+          <SelectValue placeholder="Next Line Accuracy" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="average">Next Line Accuracy</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>}
 
-      <div className="flex flex-col mt-12">
-        {title && <span className='italic font-semibold mb-4'>{title}</span>}
-        {false && <div className='flex justify-center mt-2 mb-6'>
-          <Select>
-            <SelectTrigger className="w-[300px]">
-              <SelectValue placeholder="Next Line Accuracy" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="average">Next Line Accuracy</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>}
-
-        {models.map(model => {
-          return (
-            <div key={model.name} className="flex flex-col md:flex-row text-sm metric-item items-start md:items-center">
-              <p className="font-sf tracking-wide md:w-48 md:mr-6 md:text-right">{model.name}</p>
-              <MetricBars model={model} />
-            </div>
-          )
-        })}
-
-        <div className='flex justify-center my-14'>
-          <MetricExplanation />
+    {models.map(model => {
+      return (
+        <div key={model.name} className="flex flex-col md:flex-row text-sm metric-item items-start md:items-center">
+          <p className="font-sf tracking-wide md:w-48 md:mr-6 md:text-right">{model.name}</p>
+          <MetricBars model={model} />
         </div>
-      </div>
-    </div>
-  );
+      )
+    })}
+  </div>
+
 }
 
 function MetricBars({ model }: { model: ModelItem }) {
