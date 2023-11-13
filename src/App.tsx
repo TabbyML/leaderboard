@@ -60,7 +60,7 @@ export default function App() {
           <Leaderboard url="/instruct.yml" />
         </TabsContent>
         <TabsContent value="cceval">
-          <Leaderboard url="/instruct.yml" />
+          <Leaderboard url="/cceval.yml" />
         </TabsContent>
       </Tabs>
 
