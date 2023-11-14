@@ -44,8 +44,7 @@ function addAverage(x: any) {
 }
 
 export default function App() {
-  const [value, setValue] = useState<string>("tabby");
-
+  const [value, setValue] = useState<string>(new URLSearchParams(window.location.search.substring(1)).get("kind") || "tabby");
   return (
     <div className="w-screen flex flex-col items-center pt-20 text-center">
       <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
