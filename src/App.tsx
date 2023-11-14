@@ -48,7 +48,7 @@ export default function App() {
   return (
     <div className="w-screen flex flex-col items-center pt-20 text-center">
       <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
-      <p className="mt-4 font-thin">Curated by <a target="_blank" rel="noreferrer" className='underline decoration-slate-400' href="https://tabbyml.com">TabbyML Team</a> with ❤️ in San Francisco</p>
+      <p className="mt-4 font-thin">Curated by <a target="_blank" rel="noreferrer" className='underline decoration-slate-400' href="https://github.com/TabbyML/tabby">TabbyML Team</a> with ❤️ in San Francisco</p>
       <p className="mt-2 text-sm italic">Last Updated: 11/13/2023</p>
 
       <Tabs className="mt-12" value={value}>
