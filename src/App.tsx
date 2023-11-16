@@ -63,7 +63,7 @@ export default function App() {
         </TabsContent>
       </Tabs>
 
-      {value === "cceval" && <span className='text-sm mx-4 font-thin lg:w-[500px] mt-4'>
+      {value === "cceval" && <span className='text-sm mx-4 font-thin xl:w-[500px] mt-4'>
         Numbers provided in this section are sourced from <a target='_blank' rel="noreferrer" className='italic underline decoration-slate-400' href="https://crosscodeeval.github.io/">CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion</a>
       </span>}
 
@@ -72,7 +72,7 @@ export default function App() {
         <MetricExplanation />
       </div>
 
-      <div className='lg:fixed lg:bottom-0 my-10 flex flex-col gap-4 lg:flex-row'>
+      <div className='xl:fixed xl:bottom-0 my-10 flex flex-col gap-4 xl:flex-row'>
         <TabTrigger setValue={setValue} label="tabby" value={value}>Which models plays best in Tabby?</TabTrigger>
         <TabTrigger setValue={setValue} label="instruct" value={value}>Does instruct fine-tuning improve code completion?</TabTrigger>
         <TabTrigger setValue={setValue} label="cceval" value={value}>How do open-source models compare to ChatGPT?</TabTrigger>
@@ -135,7 +135,7 @@ function Leaderboard({ url }: { url: string }) {
 function MetricBars({ model }: { model: ModelItem }) {
   const greaterThanMd = useGreater('md');
   const multiplier = greaterThanMd ? 24 : 12;
-  return <div className='text-xs py-1 lg:py-0'>
+  return <div className='text-xs py-1 xl:py-0'>
     <div className='toggle-metric flex items-center gap-2'>
       <div className="rounded-full h-2" style={{ width: model.Baseline.Average * multiplier, background: 'linear-gradient(90deg, hsla(152, 100%, 60%, 0.5) 0%, hsla(186, 100%, 69%, 0.5) 100%)' }} />
       <span>{model.Baseline.Average}%</span>
