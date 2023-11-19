@@ -30,7 +30,7 @@ CodeLlama-7B:
     Java: 8.18
     Python: 18.31
     Typescript: 22.82
-DeepseekCoder-1.3B:
+DeepSeekCoder-1.3B:
   BM25:
     C#: 6.84
     Java: 5.38
@@ -46,7 +46,7 @@ DeepseekCoder-1.3B:
     Java:   6.36
     Python: 16.25
     Typescript: 21.1
-DeepseekCoder-6.7B:
+DeepSeekCoder-6.7B:
   BM25:
     C#: 9.39
     Java: 7.01
