@@ -63,6 +63,11 @@ export default function App() {
         </TabsContent>
       </Tabs>
 
+      {value === "tabby" && <span className='text-sm mx-4 font-thin xl:w-[500px] mt-4'>
+        See <a target='_blank' rel="noreferrer" className='italic underline decoration-slate-400' href="https://tabby.tabbyml.com/blog/2023/11/23/coding-llm-leaderboard">our blog post</a> for an in-depth explanation of how this leaderboard is constructed 
+      </span>}
+
+
       {value === "cceval" && <span className='text-sm mx-4 font-thin xl:w-[500px] mt-4'>
         Numbers provided in this section are sourced from <a target='_blank' rel="noreferrer" className='italic underline decoration-slate-400' href="https://crosscodeeval.github.io/">CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion</a>
       </span>}
