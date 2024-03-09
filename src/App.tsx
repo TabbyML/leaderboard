@@ -46,10 +46,10 @@ function addAverage(x: any) {
 export default function App() {
   const [value, setValue] = useState<string>(new URLSearchParams(window.location.search.substring(1)).get("kind") || "tabby");
   return (
-    <div className="w-screen flex flex-col items-center pt-20 text-center">
+    <div className="flex flex-col items-center pt-20 text-center">
       <p className="font-sf text-4xl">Coding LLMs Leaderboard</p>
       <p className="mt-4 font-thin">Curated by <a target="_blank" rel="noreferrer" className='underline decoration-slate-400' href="https://github.com/TabbyML/tabby">TabbyML Team</a> with ❤️ in San Francisco</p>
-      <p className="mt-2 text-sm italic">Last Updated: 03/06/2024</p>
+      <p className="mt-2 text-sm italic">Last Updated: 11/13/2023</p>
 
       <Tabs className="mt-12" value={value}>
         <TabsContent value="tabby">
@@ -77,7 +77,7 @@ export default function App() {
         <MetricExplanation />
       </div>
 
-      <div className='xl:fixed xl:bottom-0 my-10 flex flex-col gap-4 xl:flex-row'>
+      <div className='my-10 flex flex-col gap-4 xl:flex-row'>
         <TabTrigger setValue={setValue} label="tabby" value={value}>Which models plays best in Tabby?</TabTrigger>
         <TabTrigger setValue={setValue} label="instruct" value={value}>Does instruct fine-tuning improve code completion?</TabTrigger>
         <TabTrigger setValue={setValue} label="cceval" value={value}>How do open-source models compare to ChatGPT?</TabTrigger>
