@@ -254,3 +254,19 @@ Qwen2.5-Coder-14B:
     C#: 63.18
     Typescript: 42.61
     Python: 38.46
+Qwen2.5-Coder-3B:
+  Baseline:
+    Java: 34.03
+    C#: 48.25
+    Typescript: 29.47
+    Python: 28.93
+  BM25:
+    Java: 39.41
+    C#: 50
+    Typescript: 31.11
+    Python: 29.31
+  Oracle:
+    Java: 44.69
+    C#: 54.81
+    Typescript: 35.19
+    Python: 33.85
